@@ -50,10 +50,10 @@ class SearchViewModel @Inject constructor(
         } else {
             uiState.value = SearchUiState(showLoading = true)
 
-//            searchJob = launchOnIO {
-//                delay(500)
-//                searchMovies(query)
-//            }
+            searchJob = launchOnIO {
+                delay(500)
+                searchMovies(query)
+            }
         }
     }
 
@@ -61,17 +61,17 @@ class SearchViewModel @Inject constructor(
         navigationState.value = NavigationState.MovieDetails(movieId)
     }
 
-//    private fun searchMovies(query: String) = launchOnMainImmediate {
-//        searchMovies.search(query).onSuccess {
-//            if (it.isEmpty()) {
-//                uiState.value = SearchUiState(showNoMoviesFound = true)
-//            } else {
-//                uiState.value = SearchUiState(movies = it.map { movieEntity -> MovieEntityMapper.toPresentation(movieEntity) })
-//            }
-//        }.onError { error ->
-//            uiState.update { it.copy(errorMessage = error.message) }
-//        }
-//    }
+    private fun searchMovies(query: String) = launchOnMainImmediate {
+        searchMovies.search(query).onSuccess {
+            if (it.isEmpty()) {
+                uiState.value = SearchUiState(showNoMoviesFound = true)
+            } else {
+                uiState.value = SearchUiState(movies = it.map { movieEntity -> MovieEntityMapper.toPresentation(movieEntity) })
+            }
+        }.onError { error ->
+            uiState.update { it.copy(errorMessage = error.message) }
+        }
+    }
 
     fun getNavigationState(): LiveData<NavigationState> = navigationState
     fun getSearchUiState(): StateFlow<SearchUiState> = uiState
