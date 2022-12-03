@@ -8,5 +8,5 @@ import com.omk.domain.util.Result
 class SearchMovies(
     private val movieRepository: MovieRepository
 ) {
-    //suspend fun search(query: String): Result<List<MovieEntity>> = movieRepository.search(query)
+    suspend fun search(query: String): Result<List<MovieEntity>> = movieRepository.search(query)
 }

@@ -1,13 +1,13 @@
 package com.omk.data.mapper
 
-import com.omk.data.entities.showData.MovieItem
 import com.omk.data.entities.MovieDbData
+import com.omk.data.entities.ShowEntity.ShowItem
 import com.omk.domain.entities.MovieEntity
 
 
 object MovieDataMapper {
 
-    fun toDomain(movieData: MovieItem): MovieEntity = MovieEntity(
+    fun toDomain(movieData: ShowItem): MovieEntity = MovieEntity(
         id = movieData.id,
         image = movieData.image.medium,
         summary = movieData.summary,
